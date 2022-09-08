@@ -48,6 +48,7 @@ const executeMutants = async (ux, runAsUsername, classDir) => {
                 survived.push(mutant);
             }
             catch (_exc) {
+                ux.stopSpinner();
                 console.log(colors.green('Mutant killed!'));
                 killed++;
             }

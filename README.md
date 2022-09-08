@@ -21,7 +21,7 @@ $ npm install -g bbmutation
 $ sfdx COMMAND
 running command...
 $ sfdx (--version)
-bbmutation/0.0.1 darwin-arm64 node-v16.16.0
+bbmutation/1.0.0 darwin-arm64 node-v16.16.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -59,7 +59,7 @@ EXAMPLES
   $ sfdx bbmutants:execute --targetusername myOrg@example.com
 ```
 
-_See code: [src/commands/bbmutants/execute.ts](https://github.com/keirbowden/bbmutation/blob/v0.0.1/src/commands/bbmutants/execute.ts)_
+_See code: [src/commands/bbmutants/execute.ts](https://github.com/keirbowden/bbmutation/blob/v1.0.0/src/commands/bbmutants/execute.ts)_
 
 ## `sfdx bbmutants:mutate [-d <string>] [-t <string>] [-m <string>] [-s <string>] [-v <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -94,5 +94,5 @@ EXAMPLES
   $ sfdx bbmutants:mutate -m 5
 ```
 
-_See code: [src/commands/bbmutants/mutate.ts](https://github.com/keirbowden/bbmutation/blob/v0.0.1/src/commands/bbmutants/mutate.ts)_
+_See code: [src/commands/bbmutants/mutate.ts](https://github.com/keirbowden/bbmutation/blob/v1.0.0/src/commands/bbmutants/mutate.ts)_
 <!-- commandsstop -->
