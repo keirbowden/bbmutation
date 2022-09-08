@@ -1,0 +1,13 @@
+{
+  "commandDescription": "generate mutant Apex classes from your existing codebase",
+  "dirFlagDescription": "directory containing classes (defaults to package directory)",
+  "targetFilesFlagDescription": "list of filenames to target for mutation",
+  "maxMutantsFlagDescription": "maximum number of mutants per file (default unlimited)",
+  "stringsFlagDescription": "list of strings to consider replacing",
+  "valuesFlagDescription": "list of numeric values to consider replacing",    "forceFlagDescription": "example boolean flag",
+  "errorNoOrgResults": "No results found for the org '%s'.",
+  "examples": [
+    "sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com",
+    "sfdx hello:org --name myname --targetusername myOrg@example.com"
+  ]
+}
