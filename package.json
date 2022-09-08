@@ -1,7 +1,7 @@
 {
   "name": "bbmutation",
   "description": "Salesforce CLI plug-in to generate mutant Apex code and execute test suites against it.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Keir Bowden @keirbowden",
   "bugs": "https://github.com/keirbowden/bbmutation/issues",
   "dependencies": {
