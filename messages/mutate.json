@@ -4,10 +4,9 @@
   "targetFilesFlagDescription": "list of filenames to target for mutation",
   "maxMutantsFlagDescription": "maximum number of mutants per file (default unlimited)",
   "stringsFlagDescription": "list of strings to consider replacing",
-  "valuesFlagDescription": "list of numeric values to consider replacing",    "forceFlagDescription": "example boolean flag",
-  "errorNoOrgResults": "No results found for the org '%s'.",
+  "valuesFlagDescription": "list of numeric values to consider replacing",    
   "examples": [
-    "sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com",
-    "sfdx hello:org --name myname --targetusername myOrg@example.com"
+    "sfdx bbmutants:mutate -t directorycontroller",
+    "sfdx bbmutants:mutate -m 5"
   ]
 }

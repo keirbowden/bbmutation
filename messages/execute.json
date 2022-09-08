@@ -1,12 +1,7 @@
 {
   "commandDescription": "deploy mutants and run tests",
   "dirFlagDescription": "directory containing classes (defaults to package directory)",
-  "targetFilesFlagDescription": "list of filenames to target for mutation",
-  "maxMutantsPerFileFlagDescription": "maximum number of mutants per file (default unlimited)",
-"forceFlagDescription": "example boolean flag",
-  "errorNoOrgResults": "No results found for the org '%s'.",
   "examples": [
-    "sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com",
-    "sfdx hello:org --name myname --targetusername myOrg@example.com"
+    "sfdx bbmutants:execute --targetusername myOrg@example.com"
   ]
 }
