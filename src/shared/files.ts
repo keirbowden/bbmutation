@@ -1,5 +1,6 @@
 import { mkdirSync, rmdirSync, statSync, readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
+import { platform } from 'process';
 
 const fileExists = (pathname) => {
     let result=true;
@@ -49,4 +50,11 @@ const createDirectory = (pathname) => {
 
 }
 
-export { createDirectory, getDirectoryEntries, findSubdirectory }
+const getSFDXExecutable = () => {
+    let sfdxExe='sfdx';
+    if (platform=="win32") {
+        sfdxExe='sfdx.cmd';
+    }
+}
+
+export { createDirectory, getDirectoryEntries, findSubdirectory, getSFDXExecutable }

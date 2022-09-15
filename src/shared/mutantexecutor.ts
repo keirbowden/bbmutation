@@ -1,4 +1,4 @@
-import {  getDirectoryEntries } from './files';
+import {  getDirectoryEntries, getSFDXExecutable } from './files';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { copyFileSync, unlinkSync } from 'fs';
@@ -30,19 +30,19 @@ const executeMutants = async (ux, runAsUsername, classDir) => {
                      join(classDir, className));
 
         const execPromisfy = promisify(exec);
-
+        const sfdxExe=getSFDXExecutable();
         try {
             
             //let { stdout, stderr } = await execPromisfy('sfdx force:source:legacy:push -f -u ' + runAsUsername);
     
             ux.startSpinner('Deploying');
-            await execPromisfy('sfdx force:source:legacy:push -f -u ' + runAsUsername);
+            await execPromisfy(sfdxExe + ' force:source:legacy:push -f -u ' + runAsUsername);
             ux.stopSpinner();
 
             try {
                 // let { stdout, stderr } = await execPromisfy('sfdx force:apex:test:run -l RunLocalTests -u ' + runAsUsername + ' --synchronous');
                 ux.startSpinner('Testing');
-                await execPromisfy('sfdx force:apex:test:run -l RunLocalTests -u ' + runAsUsername + ' --synchronous');
+                await execPromisfy(sfdxExe + 'force:apex:test:run -l RunLocalTests -u ' + runAsUsername + ' --synchronous');
                 ux.stopSpinner();
                 console.log(colors.red('Mutant survived'));
                 survived.push(mutant);
