@@ -1,7 +1,7 @@
 import {join} from 'path';
 import {readFileSync, writeFileSync} from 'fs';
 
-const ifOps=['>', '<', '<=', '==', '!='];
+const ifOps=['>', '<', '<=', '>=', '==', '!='];
 const subtractOneOps=['+1', '-5', '+5'];
 
 const mutateClass = (classDir, className, mutantDir, mutantCount, config) => {

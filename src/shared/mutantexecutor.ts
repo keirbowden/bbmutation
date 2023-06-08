@@ -17,6 +17,7 @@ const executeMutants = async (ux, runAsUsername, classDir) => {
     const mutants=getDirectoryEntries(mutantDir);
     const survived=[];
     const started=new Date().getTime();
+
     for (let idx=0; idx<mutants.length; idx++) {
         const mutant=mutants[idx];
         const clsPos=mutant.lastIndexOf('.cls');
@@ -31,24 +32,31 @@ const executeMutants = async (ux, runAsUsername, classDir) => {
 
         const execPromisfy = promisify(exec);
         const sfdxExe=getSFDXExecutable();
+
         try {
             
             //let { stdout, stderr } = await execPromisfy('sfdx force:source:legacy:push -f -u ' + runAsUsername);
     
             ux.startSpinner('Deploying');
-            await execPromisfy(sfdxExe + ' force:source:legacy:push -f -u ' + runAsUsername);
+            await execPromisfy(sfdxExe + ' project deploy start -c -o ' + runAsUsername);
             ux.stopSpinner();
 
             try {
                 // let { stdout, stderr } = await execPromisfy('sfdx force:apex:test:run -l RunLocalTests -u ' + runAsUsername + ' --synchronous');
                 ux.startSpinner('Testing');
-                await execPromisfy(sfdxExe + 'force:apex:test:run -l RunLocalTests -u ' + runAsUsername + ' --synchronous');
+                await execPromisfy(sfdxExe + ' apex run test -l RunLocalTests -o ' + runAsUsername + ' --synchronous');
                 ux.stopSpinner();
                 console.log(colors.red('Mutant survived'));
                 survived.push(mutant);
             }
             catch (_exc) {
                 ux.stopSpinner();
+                if (_exc.code!=100) {
+                    console.log(colors.red('Unexpected return code - have limits been exceeded?'));
+                    console.log(colors.red('Full exception output:'));
+                    console.log(colors.red(JSON.stringify(_exc, null, 4)));
+                    process.exit(1);
+                }
                 console.log(colors.green('Mutant killed!'));
                 killed++;
             }
@@ -73,7 +81,7 @@ const executeMutants = async (ux, runAsUsername, classDir) => {
     ux.log('Killed     : ' + killed);
     ux.log('Survived   : ' + survived.length);
     ux.log('Suppressed : ' + suppressed);
-    const mutationScore=(((killed - suppressed) / mutants.length) * 100).toFixed(2);
+    const mutationScore=((killed / (mutants.length -  suppressed)) * 100).toFixed(2);
     console.log('\n' + colors.cyan('Mutant score = ' + mutationScore));
     if (survived.length>0) {
         console.log('\n\n' + colors.red('The following mutants survived:'));

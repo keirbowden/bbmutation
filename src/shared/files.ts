@@ -51,10 +51,12 @@ const createDirectory = (pathname) => {
 }
 
 const getSFDXExecutable = () => {
-    let sfdxExe='sfdx';
+    let sfdxExe='sf';
     if (platform=="win32") {
-        sfdxExe='sfdx.cmd';
+        sfdxExe='sf.cmd';
     }
+
+    return sfdxExe;
 }
 
 export { createDirectory, getDirectoryEntries, findSubdirectory, getSFDXExecutable }
